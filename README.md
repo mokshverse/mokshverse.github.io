@@ -1,2 +1,8 @@
-# MokshVerse.github.io
-"Personal website of Moksh — creative showcase, coding projects, and more"
+# MokshVerse 🌌
+
+Welcome to my personal portfolio site — built with HTML, CSS & JS.  
+## Features:
+- Responsive Design
+- Feedback Form 💬
+- Instagram Integration 📸
+- Dark Mode Toggle 🌙
