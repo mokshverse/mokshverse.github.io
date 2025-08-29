@@ -18,19 +18,20 @@
   <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml" />
 </head>
 <body>
-  <!-- Navbar / Header -->
+  <!-- Sticky Navbar -->
   <header class="navbar">
     <div class="container inner">
       <a class="logo" href="#">
         <img src="assets/images/mokshverse-logo.svg" alt="MokshVerse Logo" class="logo-img" />
       </a>
-      <div>
-        <h1>MokshVerse</h1>
-        <p>Your creativity, your code, your universe 🌌</p>
-      </div>
-      <button id="darkToggle" class="btn-premium btn-darkmode">Dark Mode</button>
     </div>
   </header>
+
+  <!-- Hero Section -->
+  <section class="hero reveal">
+    <h1 class="site-title">MokshVerse</h1>
+    <p>Your creativity, your code, your universe 🌌</p>
+  </section>
 
   <!-- About Section -->
   <section id="about" class="section reveal">
@@ -59,7 +60,6 @@
       <h2>Feedback 💬</h2>
       <form action="https://formspree.io/f/xgvzdjnn" method="POST">
         <input type="text" name="name" placeholder="Your Name" required>
-        <input type="email" name="email" placeholder="Your Email" required>
         <textarea name="message" placeholder="Your Message" required></textarea>
         <button type="submit" class="btn-premium">Send Feedback</button>
       </form>
@@ -75,19 +75,8 @@
   <footer class="footer">
     <div class="container">
       <p>© Moksh 2025 • Built with 💙 by Me</p>
-      <div id="visitCount">Visitors: Loading...</div>
-      <img src="https://komarev.com/ghpvc/?username=MokshVerse&label=Visitors&color=blue&style=flat" alt="Visitor Counter">
     </div>
   </footer>
-
-  <!-- Visitor Counter Script -->
-  <script>
-    fetch('https://api.countapi.xyz/update/mokshverse/visits/?amount=1')
-      .then(res => res.json())
-      .then(data => {
-        document.getElementById('visitCount').innerText = "Visitors: " + data.value;
-      });
-  </script>
 
   <!-- Scroll Reveal Animation -->
   <script>
