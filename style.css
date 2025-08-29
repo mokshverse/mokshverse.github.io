@@ -192,4 +192,66 @@ input::placeholder, textarea::placeholder {
 body.dark {
   background-color: #121212;
   color: #eeeeee;
+
+}
+/* Gradient Headings */
+.gradient-text {
+  background: linear-gradient(90deg, #ff4d4d, #ff9933, #ffff66, #66ff66, #66ffff, #6666ff, #ff66ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Glow Animation for Hero Title */
+.glow {
+  animation: glow 3s ease-in-out infinite alternate;
+}
+@keyframes glow {
+  from { text-shadow: 0 0 10px rgba(255,255,255,0.5); }
+  to { text-shadow: 0 0 20px rgba(255,255,255,0.9), 0 0 30px rgba(255,255,255,0.7); }
+}
+
+/* Highlighted Words */
+.highlight {
+  color: var(--accent);
+  font-weight: 600;
+  position: relative;
+}
+.highlight::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, #ff4d4d, #ff9933, #ffff66, #66ff66, #66ffff, #6666ff, #ff66ff);
+  animation: underline 2s infinite;
+}
+@keyframes underline {
+  0% { transform: scaleX(0); }
+  50% { transform: scaleX(1); }
+  100% { transform: scaleX(0); }
+}
+
+/* Glassmorphism Section Cards */
+.glass-card {
+  background: rgba(255,255,255,0.05);
+  border-radius: var(--radius);
+  padding: 30px;
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  margin: 50px auto;
+  width: 80%;
+  max-width: 800px;
+}
+
+/* Footer Signature Animation */
+.signature {
+  font-family: 'Poppins', cursive;
+  font-size: 14px;
+  animation: fadeIn 2s ease-in-out;
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
