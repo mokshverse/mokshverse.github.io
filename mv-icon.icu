@@ -7,8 +7,4 @@
   </defs>
   <circle cx="32" cy="32" r="28" fill="url(#fg)"/>
   <path d="M16 42 L24 22 L32 34 L40 22 L48 42 L43 42 L40 34 L32 44 L24 34 L21 42 Z" fill="#ffffff"/>
-
 </svg>
-<a href="https://t.me/mokshverse" target="_blank">
-    <img src="images/icon-telegram.svg" alt="Telegram">
-</a>
