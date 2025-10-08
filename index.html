@@ -85,7 +85,76 @@
     }
   </style>
 </head>
-<body>
+<script type="module">
+  // --- PASTE YOUR FIREBASE CONFIG BELOW (replace placeholders) ---
+  const firebaseConfig = {
+    apiKey: "AIzaSyCSltKbhEYg8DL9YtbMwUV4l60HJKUIsrI",
+    authDomain: "mokshverse-52096.firebaseapp.com",
+    projectId: "mokshverse-52096",
+    storageBucket: "mokshverse-52096.firebasestorage.app",
+    messagingSenderId: "752186470007",
+    appId: "1:752186470007:web:425787c0661eb5fc836072"
+  };
+  // -------------------------------------------------------------------
+
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
+  import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js";
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  const emailEl = document.getElementById('auth-email');
+  const passEl = document.getElementById('auth-password');
+  const signBtn = document.getElementById('auth-btn');
+  const logoutBtn = document.getElementById('auth-logout');
+  const userSpan = document.getElementById('auth-user');
+
+  // If already logged in, redirect to dashboard immediately
+  onAuthStateChanged(auth, user => {
+    if (user) {
+      // show small logged-in state in bar (so user sees it's logged) and redirect
+      userSpan.style.display = 'inline-block';
+      userSpan.textContent = user.email || user.uid;
+      logoutBtn.style.display = 'inline-block';
+      // Redirect to dashboard page (make sure file is named dashboard.html)
+      if (!location.pathname.endsWith('dashboard.html')) {
+        location.href = 'dashboard.html';
+      }
+    } else {
+      userSpan.style.display = 'none';
+      logoutBtn.style.display = 'none';
+    }
+  });
+
+  signBtn.addEventListener('click', async () => {
+    const email = emailEl.value.trim();
+    const pass = passEl.value;
+    if (!email || !pass) { alert('Enter email and password'); return; }
+    signBtn.disabled = true; signBtn.textContent = 'Signing in…';
+    try {
+      await signInWithEmailAndPassword(auth, email, pass);
+      // onAuthStateChanged will redirect
+    } catch (err) {
+      alert('Login failed: ' + (err.message || err.code));
+    } finally {
+      signBtn.disabled = false; signBtn.textContent = 'Sign in';
+    }
+  });
+
+  // Enter key submits
+  [emailEl, passEl].forEach(el => el.addEventListener('keydown', e => { if (e.key === 'Enter') signBtn.click(); }));
+
+  logoutBtn.addEventListener('click', async () => {
+    await signOut(auth);
+    // After logout, stay on the same page (user can see site again)
+    if (location.pathname.endsWith('dashboard.html')) {
+      location.href = '/'; // or change to your homepage path
+    } else {
+      // just hide logout UI; onAuthStateChanged will manage UI
+    }
+  });
+</script>
+  <body>
   <div class="scene" aria-hidden="true">
     <svg viewBox="0 0 1440 400" preserveAspectRatio="none" style="width:100%;height:100vh">
       <defs>
@@ -281,3 +350,4 @@
   </script>
 </body>
 </html>
+
