@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>MokshVerse — Elite Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bgA:#04050b; --bgB:#071227; --cardGrad:linear-gradient(135deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      --accent1:#00d4ff; --accent2:#7a5cff; --accentAlt:#ffd166; --muted:#9fb2c8;
+      --glass:rgba(255,255,255,0.03);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:'Plus Jakarta Sans',Inter,system-ui; color:#e9fbff;background:linear-gradient(180deg,var(--bgA),var(--bgB));-webkit-font-smoothing:antialiased}
+    header{max-width:1200px;margin:18px auto;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:8px 18px}
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{width:54px;height:54px;border-radius:12px;background:linear-gradient(90deg,var(--accent1),var(--accent2));display:grid;place-items:center;font-weight:800;color:#021}
+    .title h2{margin:0;font-size:18px} .title p{margin:2px 0 0 0;color:var(--muted);font-size:13px}
+    .controls{display:flex;gap:10px;align-items:center}
+    .btn{padding:9px 12px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:#dff9ff;cursor:pointer}
+    .btn.primary{background:linear-gradient(90deg,var(--accent1),var(--accent2));color:#021;border:none;box-shadow:0 10px 30px rgba(0,0,0,0.6)}
+    .layout{max-width:1200px;margin:18px auto;display:grid;grid-template-columns:320px 1fr;gap:18px;padding:0 18px}
+    @media (max-width:980px){ .layout{grid-template-columns:1fr} }
+
+    .panel{padding:18px;border-radius:14px;background:var(--cardGrad);border:1px solid rgba(255,255,255,0.03);box-shadow:0 20px 60px rgba(2,8,18,0.6)}
+    .drop{padding:18px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px dashed rgba(255,255,255,0.04);text-align:center;cursor:pointer}
+    input[type=file]{display:none}
+    .meta{display:flex;justify-content:space-between;align-items:center;margin-top:12px;color:var(--muted);font-size:13px}
+    .file-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
+    .card{background:rgba(0,0,0,0.18);padding:12px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);display:flex;flex-direction:column;gap:8px;min-height:120px}
+    .thumb{height:100px;border-radius:8px;background:linear-gradient(90deg,var(--accent1),var(--accent2));display:grid;place-items:center;color:#012;font-weight:800;font-size:18px}
+    .fname{font-weight:700;color:#e9fbff;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+    .fsmall{color:var(--muted);font-size:13px}
+    .card .row{display:flex;justify-content:space-between;align-items:center;gap:8px}
+    .actions{display:flex;gap:8px;align-items:center}
+    .progress{height:8px;background:rgba(255,255,255,0.03);border-radius:999px;overflow:hidden}
+    .bar{height:100%;background:linear-gradient(90deg,var(--accent1),var(--accent2));width:0%}
+    .empty{color:var(--muted);text-align:center;padding:18px}
+
+    /* preview modal */
+    .modal{position:fixed;inset:0;background:rgba(1,6,12,0.6);display:none;place-items:center;z-index:9999}
+    .modal .box{width:min(980px,96%);background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.03)}
+    .modal img, .modal video{max-width:100%;max-height:70vh;border-radius:8px}
+
+    /* small helpers */
+    .pill{padding:6px 10px;border-radius:999px;background:rgba(255,255,255,0.02);font-size:13px}
+    .right-small{font-size:13px;color:var(--muted)}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <div class="logo">MV</div>
+      <div class="title">
+        <h2>MokshVerse — Elite Dashboard</h2>
+        <p>Private • Admin-only • Per-admin files</p>
+      </div>
+    </div>
+    <div class="controls">
+      <div id="userEmail" class="right-small"></div>
+      <button class="btn" id="themeBtn" title="Toggle theme">Theme</button>
+      <button class="btn primary" id="logoutBtn">Logout</button>
+    </div>
+  </header>
+
+  <div class="layout">
+    <aside class="panel">
+      <h3 style="margin:0 0 8px 0">Upload</h3>
+      <label class="drop" id="dropZone">Click or drop files here
+        <input id="fileInput" type="file" multiple />
+      </label>
+      <div class="meta"><span id="quota">Free tier applies</span><span class="pill" id="selCount">0 selected</span></div>
+      <div style="margin-top:12px;display:flex;gap:8px">
+        <button class="btn primary" id="uploadBtn">Upload</button>
+        <button class="btn" id="refreshBtn">Refresh</button>
+      </div>
+      <div id="uploadArea" style="margin-top:12px"></div>
+    </aside>
+
+    <main class="panel">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+        <h3 style="margin:0">Your Files</h3>
+        <div style="display:flex;gap:8px;align-items:center">
+          <div class="right-small" id="stats">—</div>
+        </div>
+      </div>
+
+      <div id="filesContainer" class="file-grid">
+        <div class="empty">Loading files…</div>
+      </div>
+    </main>
+  </div>
+
+  <div class="modal" id="modal">
+    <div class="box" id="modalBox">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+        <div id="modalTitle" style="font-weight:700"></div>
+        <div><button class="btn" id="closeModal">Close</button></div>
+      </div>
+      <div id="previewArea"></div>
+    </div>
+  </div>
+
+  <script type="module">
+    // --- PASTE YOUR FIREBASE CONFIG HERE (replace placeholders) ---
+    const firebaseConfig = {
+      apiKey: "PASTE_API_KEY",
+      authDomain: "PASTE_AUTH_DOMAIN",
+      projectId: "PASTE_PROJECT_ID",
+      storageBucket: "PASTE_STORAGE_BUCKET",
+      messagingSenderId: "PASTE_MESSAGING_SENDER_ID",
+      appId: "PASTE_APP_ID"
+    };
+    // ---------------------------------------------------------------
+
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
+    import { getAuth, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-auth.js";
+    import { getStorage, ref, uploadBytesResumable, getDownloadURL, listAll, deleteObject } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-storage.js";
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const storage = getStorage(app);
+
+    // DOM
+    const fileInput = document.getElementById('fileInput');
+    const dropZone = document.getElementById('dropZone');
+    const uploadBtn = document.getElementById('uploadBtn');
+    const refreshBtn = document.getElementById('refreshBtn');
+    const filesContainer = document.getElementById('filesContainer');
+    const uploadArea = document.getElementById('uploadArea');
+    const logoutBtn = document.getElementById('logoutBtn');
+    const userEmailEl = document.getElementById('userEmail');
+    const selCount = document.getElementById('selCount');
+    const stats = document.getElementById('stats');
+
+    const modal = document.getElementById('modal');
+    const modalBox = document.getElementById('modalBox');
+    const previewArea = document.getElementById('previewArea');
+    const modalTitle = document.getElementById('modalTitle');
+    const closeModal = document.getElementById('closeModal');
+
+    let currentUser = null;
+    let selectedFiles = [];
+
+    // Auth
+    onAuthStateChanged(auth, user => {
+      if (!user) return window.location.href = 'premium-index.html';
+      currentUser = user;
+      userEmailEl.textContent = user.email || user.uid;
+      refreshFileList();
+    });
+
+    // drag & drop
+    dropZone.addEventListener('click', ()=> fileInput.click());
+    dropZone.addEventListener('dragover', e=>{ e.preventDefault(); dropZone.style.transform='translateY(-6px)'; });
+    dropZone.addEventListener('dragleave', ()=> dropZone.style.transform='none');
+    dropZone.addEventListener('drop', e=>{ e.preventDefault(); dropZone.style.transform='none'; handleFiles(e.dataTransfer.files); });
+    fileInput.addEventListener('change', e => handleFiles(e.target.files));
+
+    function handleFiles(list){
+      selectedFiles = Array.from(list);
+      selCount.textContent = `${selectedFiles.length} selected`;
+    }
+
+    uploadBtn.addEventListener('click', async ()=>{
+      if (!selectedFiles.length) return alert('Select files first');
+      uploadArea.innerHTML = '';
+      for (const f of selectedFiles) {
+        await uploadSingle(f);
+      }
+      selectedFiles = []; fileInput.value=''; selCount.textContent='0 selected';
+      refreshFileList();
+    });
+
+    function uploadSingle(file){
+      const wrap = document.createElement('div');
+      wrap.style.marginBottom = '10px';
+      wrap.innerHTML = `<div style="display:flex;justify-content:space-between;align-items:center">
+        <div style="font-weight:600;color:#e9fbff">${escapeHtml(file.name)}</div>
+        <div style="color:var(--muted)">${(file.size/1024/1024).toFixed(2)} MB</div>
+      </div><div class="progress"><div class="bar"></div></div>`;
+      uploadArea.appendChild(wrap);
+      const bar = wrap.querySelector('.bar');
+
+      const path = `uploads/${currentUser.uid}/${Date.now()}_${file.name}`;
+      const r = ref(storage, path);
+      const task = uploadBytesResumable(r, file);
+
+      return new Promise((resolve) => {
+        task.on('state_changed', snap => {
+          const pct = Math.round((snap.bytesTransferred / snap.totalBytes) * 100);
+          bar.style.width = pct + '%';
+        }, err => {
+          bar.style.background = 'linear-gradient(90deg,#ff6b6b,#ffb3b3)'; resolve();
+        }, ()=>{ bar.style.width='100%'; resolve(); });
+      });
+    }
+
+    // list files
+    async function refreshFileList(){
+      filesContainer.innerHTML = '<div class="empty">Loading files…</div>';
+      try {
+        const listRef = ref(storage, `uploads/${currentUser.uid}`);
+        const res = await listAll(listRef);
+        if (!res.items || res.items.length===0) {
+          filesContainer.innerHTML = '<div class="empty">No files uploaded yet</div>';
+          stats.textContent = '0 files';
+          return;
+        }
+        filesContainer.innerHTML = '';
+        let total = 0;
+        for (const itemRef of res.items) {
+          const url = await getDownloadURL(itemRef);
+          const name = decodeURIComponent(itemRef.name);
+          total++;
+          const card = document.createElement('div');
+          card.className = 'card';
+          const ext = (name.split('.').pop() || '').toUpperCase();
+          const thumbHtml = isImage(name) ? `<img src="${url}" alt="${escapeHtml(name)}" style="width:100%;height:100%;object-fit:cover;border-radius:8px"/>`
+                           : `<div class="thumb">${escapeHtml(ext)}</div>`;
+
+          card.innerHTML = `<div style="flex:1">${thumbHtml}</div>
+            <div class="row" style="margin-top:8px">
+              <div style="min-width:0">
+                <div class="fname">${escapeHtml(shorten(name,38))}</div>
+                <div class="fsmall">${escapeHtml(itemRef.fullPath)}</div>
+              </div>
+              <div class="actions">
+                <button class="btn" data-url="${url}" data-name="${escapeHtml(name)}">Open</button>
+                <a class="btn" href="${url}" target="_blank" rel="noopener" download>DL</a>
+                <button class="btn" data-path="${itemRef.fullPath}" data-delete>Del</button>
+              </div>
+            </div>`;
+          filesContainer.appendChild(card);
+
+          // handlers
+          card.querySelector('button[data-delete]')?.addEventListener('click', async (e)=>{
+            if (!confirm('Delete this file?')) return;
+            try { await deleteObject(ref(storage, e.currentTarget.dataset.path)); card.remove(); } catch (err) { alert('Delete failed: '+(err.message||err.code)); }
+          });
+          card.querySelector('button[data-url]')?.addEventListener('click', (e)=>{
+            const u = e.currentTarget.dataset.url;
+            const nm = e.currentTarget.dataset.name;
+            openPreview(nm, u);
+          });
+        }
+        stats.textContent = `${total} files`;
+      } catch (err) {
+        filesContainer.innerHTML = '<div class="empty">Error loading files</div>';
+        stats.textContent = '—';
+      }
+    }
+
+    refreshBtn.addEventListener('click', refreshFileList);
+
+    logoutBtn.addEventListener('click', async ()=>{
+      await signOut(auth); window.location.href='premium-index.html';
+    });
+
+    // preview modal
+    function openPreview(name, url){
+      modalTitle.textContent = name;
+      previewArea.innerHTML = '';
+      if (isImage(name)) {
+        const img = document.createElement('img'); img.src = url; previewArea.appendChild(img);
+      } else if (isVideo(name)) {
+        const v = document.createElement('video'); v.src = url; v.controls = true; previewArea.appendChild(v);
+      } else {
+        previewArea.innerHTML = `<div style="padding:20px"><a class="btn primary" href="${url}" target="_blank" rel="noopener" download>Download ${escapeHtml(name)}</a></div>`;
+      }
+      modal.style.display='grid';
+    }
+    closeModal.addEventListener('click', ()=> modal.style.display='none');
+    modal.addEventListener('click', (e)=>{ if (e.target===modal) modal.style.display='none'; });
+
+    // helpers
+    function isImage(n){ return /\.(png|jpe?g|gif|webp|svg)$/i.test(n); }
+    function isVideo(n){ return /\.(mp4|webm|ogg)$/i.test(n); }
+    function escapeHtml(s){ return String(s).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;'); }
+    function shorten(s,n){ return s.length>n ? s.slice(0,n-1)+'…' : s; }
+
+    // small keyboard shortcut
+    window.addEventListener('keydown', e => { if (e.key.toLowerCase()==='u') fileInput.click(); });
+
+  </script>
+</body>
+</html>
