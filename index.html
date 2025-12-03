@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MOKSHVERSE | Premium Portfolio</title>
+  <title>MOKSHVERSE | Official</title>
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
   
   <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
 
@@ -15,271 +15,190 @@
     :root {
       --primary: #00ffff;
       --gold: #ffd700;
+      --silver: #e0e0e0;
       --bg-dark: #050505;
-      --card-bg: rgba(255, 255, 255, 0.03);
-      --glass-border: rgba(255, 255, 255, 0.08);
+      --card-bg: rgba(20, 20, 20, 0.6);
+      --glass-border: rgba(255, 255, 255, 0.1);
     }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; } /* Hide default cursor */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     
     body {
       font-family: 'Outfit', sans-serif;
       background-color: var(--bg-dark);
       color: #fff;
       overflow-x: hidden;
-      scroll-behavior: smooth;
-    }
-
-    /* Custom Cursor */
-    #cursor {
-      position: fixed;
-      width: 20px;
-      height: 20px;
-      background: var(--primary);
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 9999;
-      mix-blend-mode: difference;
-      transition: transform 0.1s;
-    }
-    #cursor-blur {
-      position: fixed;
-      width: 300px;
-      height: 300px;
-      background: rgba(0, 255, 255, 0.15);
-      border-radius: 50%;
-      filter: blur(80px);
-      pointer-events: none;
-      z-index: -1;
-      transform: translate(-50%, -50%);
     }
 
     /* Background Animation */
     canvas#bg {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      z-index: -2;
-      opacity: 0.6;
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      z-index: -2; opacity: 0.4;
     }
 
     /* Navigation */
     nav {
-      position: fixed;
-      top: 0; width: 100%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 20px 5%;
-      z-index: 100;
-      backdrop-filter: blur(10px);
+      position: fixed; top: 0; width: 100%;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 20px 5%; z-index: 100;
+      backdrop-filter: blur(15px);
       border-bottom: 1px solid rgba(255,255,255,0.05);
     }
-    .logo {
-      font-weight: 900;
+    
+    .logo-text {
+      font-family: 'Syncopate', sans-serif; /* Ultra Premium Font */
+      font-weight: 700;
       font-size: 1.5rem;
+      letter-spacing: 3px;
       color: #fff;
       text-transform: uppercase;
-      letter-spacing: 2px;
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
     }
-    .logo span { color: var(--gold); }
+    .logo-text span { color: var(--gold); }
     
     .nav-links a {
-      color: #ccc;
-      text-decoration: none;
-      margin-left: 30px;
-      font-weight: 500;
+      color: #ccc; text-decoration: none; margin-left: 30px;
+      font-weight: 500; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px;
       transition: 0.3s;
-      text-transform: uppercase;
-      font-size: 0.8rem;
-      letter-spacing: 1px;
     }
-    .nav-links a:hover { color: var(--primary); text-shadow: 0 0 10px var(--primary); }
+    .nav-links a:hover { color: var(--primary); text-shadow: 0 0 15px var(--primary); }
 
-    /* Hero Section */
+    /* --- HERO SECTION --- */
     header {
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      position: relative;
-      padding: 0 20px;
+      min-height: 100vh; display: flex; flex-direction: column;
+      justify-content: center; align-items: center; text-align: center;
+      perspective: 1000px; padding-top: 60px;
+    }
+
+    /* 3D Logo Container */
+    .logo-container {
+      width: 280px; height: 280px;
+      margin-bottom: 30px;
+      transform-style: preserve-3d;
+      transition: transform 0.1s ease-out;
     }
 
     .hero-img {
-      width: 180px;
-      margin-bottom: 30px;
-      filter: drop-shadow(0 0 30px rgba(255, 215, 0, 0.3));
-      animation: float 6s ease-in-out infinite;
+      width: 100%;
+      filter: drop-shadow(0 0 25px var(--gold)) drop-shadow(0 0 50px var(--primary));
+      transform: translateZ(40px);
     }
 
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-20px); }
-    }
-
+    /* ULTRA PRO MAX TEXT STYLE */
     header h1 {
-      font-size: clamp(3rem, 8vw, 6rem);
-      line-height: 1;
-      font-weight: 900;
-      background: linear-gradient(to right, #fff, var(--gold));
+      font-family: 'Syncopate', sans-serif; /* The Premium Font */
+      font-size: clamp(2.5rem, 8vw, 6.5rem); /* Responsive Huge Size */
+      font-weight: 700;
+      letter-spacing: 10px; /* Wide spacing looks expensive */
+      line-height: 1.1;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      
+      /* Gold & Silver Gradient */
+      background: linear-gradient(to bottom, #ffffff, var(--silver), var(--gold));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      margin-bottom: 10px;
+      
+      /* Neon Glow */
+      filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.5));
+      animation: textShine 5s infinite alternate;
     }
-    
+
+    @keyframes textShine {
+      0% { filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.3)); }
+      100% { filter: drop-shadow(0 0 40px rgba(0, 255, 255, 0.6)); }
+    }
+
     header h2 {
-      font-size: clamp(1.5rem, 4vw, 3rem);
-      color: transparent;
-      -webkit-text-stroke: 1px var(--primary);
-      opacity: 0.7;
+      font-size: clamp(1rem, 3vw, 2rem);
+      letter-spacing: 5px;
+      color: var(--primary);
       text-transform: uppercase;
+      font-weight: 300;
+      opacity: 0.9;
+      margin-bottom: 30px;
     }
 
-    header p {
-      margin-top: 20px;
-      max-width: 600px;
-      color: #888;
-      font-size: 1.1rem;
-      line-height: 1.6;
-    }
-
+    /* Main Button */
     .btn-main {
-      margin-top: 40px;
-      padding: 15px 40px;
-      background: transparent;
+      padding: 18px 50px;
+      background: rgba(255, 215, 0, 0.1);
       border: 1px solid var(--gold);
       color: var(--gold);
       font-weight: 700;
-      border-radius: 50px;
+      font-size: 0.9rem;
+      border-radius: 0; /* Sharp edges look more tech/premium */
       text-transform: uppercase;
-      letter-spacing: 2px;
+      letter-spacing: 4px;
       transition: 0.4s;
       position: relative;
       overflow: hidden;
-      z-index: 1;
+      backdrop-filter: blur(5px);
     }
-    
-    .btn-main::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0;
-      width: 0%; height: 100%;
+    .btn-main:hover {
       background: var(--gold);
-      z-index: -1;
-      transition: 0.4s;
-    }
-    
-    .btn-main:hover::before { width: 100%; }
-    .btn-main:hover { color: #000; box-shadow: 0 0 30px rgba(255, 215, 0, 0.4); }
-
-    /* Sections Common */
-    section {
-      padding: 100px 5%;
-      position: relative;
+      color: #000;
+      box-shadow: 0 0 40px var(--gold);
     }
 
+    /* Sections & Glass Cards */
+    section { padding: 100px 5%; }
     .section-title {
-      font-size: 3rem;
-      margin-bottom: 50px;
-      text-transform: uppercase;
-      font-weight: 800;
-      text-align: center;
+      font-family: 'Syncopate', sans-serif;
+      font-size: 2.5rem; margin-bottom: 50px;
+      text-transform: uppercase; font-weight: 700; text-align: center;
+      letter-spacing: 5px;
     }
     .section-title span { color: var(--primary); }
 
-    /* Glass Cards */
     .glass-card {
       background: var(--card-bg);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
+      backdrop-filter: blur(25px);
       border: 1px solid var(--glass-border);
-      border-radius: 20px;
-      padding: 50px;
-      max-width: 900px;
-      margin: 0 auto;
-      box-shadow: 0 0 50px rgba(0,0,0,0.5);
-      transition: transform 0.3s;
+      padding: 60px;
+      max-width: 900px; margin: 0 auto;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.6);
     }
-    .glass-card:hover { border-color: rgba(255,255,255,0.2); }
-
-    .about-text {
-      font-size: 1.2rem;
-      color: #ccc;
-      line-height: 1.8;
-      text-align: center;
-    }
-    .highlight { color: var(--gold); font-weight: 700; }
-
-    /* Input Fields */
-    form { display: flex; flex-direction: column; gap: 20px; }
     
+    /* Inputs */
     input, textarea {
-      width: 100%;
-      padding: 20px;
-      background: rgba(0,0,0,0.3);
-      border: 1px solid #333;
-      border-radius: 10px;
-      color: #fff;
-      font-family: 'Outfit', sans-serif;
-      font-size: 1rem;
+      width: 100%; margin-bottom: 20px; padding: 20px;
+      background: rgba(255,255,255,0.03); border: 1px solid #444;
+      color: #fff; font-family: 'Outfit', sans-serif; font-size: 1rem;
       transition: 0.3s;
+    }
+    input:focus, textarea:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 20px rgba(255, 215, 0, 0.1);
+      outline: none;
+      background: rgba(0,0,0,0.5);
     }
     
-    input:focus, textarea:focus {
-      outline: none;
-      border-color: var(--primary);
-      box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
-    }
-
     button[type="submit"] {
-      padding: 20px;
-      background: linear-gradient(45deg, var(--primary), #0088ff);
-      border: none;
-      border-radius: 10px;
-      color: #000;
-      font-weight: 800;
-      text-transform: uppercase;
-      font-size: 1rem;
-      transition: 0.3s;
+      width: 100%; padding: 20px;
+      background: linear-gradient(90deg, var(--primary), #0055ff);
+      border: none; color: #fff; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; transition: 0.3s; cursor: pointer;
     }
-    button[type="submit"]:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0, 255, 255, 0.3); }
+    button[type="submit"]:hover { letter-spacing: 4px; box-shadow: 0 0 30px var(--primary); }
 
-    /* Footer */
-    footer {
-      border-top: 1px solid #222;
-      padding: 50px 20px;
-      text-align: center;
-      color: #666;
-    }
-    .socials a {
-      color: #fff;
-      font-size: 1.5rem;
-      margin: 0 15px;
-      transition: 0.3s;
-    }
-    .socials a:hover { color: var(--gold); }
+    footer { padding: 50px; text-align: center; color: #666; border-top: 1px solid rgba(255,255,255,0.05); }
+    .socials a { color: #fff; font-size: 1.8rem; margin: 0 15px; transition: 0.3s; display: inline-block; }
+    .socials a:hover { color: var(--gold); transform: translateY(-5px); text-shadow: 0 0 20px var(--gold); }
 
-    /* Mobile Responsive */
     @media (max-width: 768px) {
-      header h1 { font-size: 3rem; }
-      header h2 { font-size: 1.5rem; }
-      .glass-card { padding: 30px 20px; }
-      .nav-links { display: none; } /* Simplified for mobile */
+      .nav-links { display: none; }
+      .logo-container { width: 220px; height: 220px; }
+      header h1 { letter-spacing: 5px; } /* Adjust spacing for mobile */
     }
   </style>
 </head>
 <body>
 
-  <div id="cursor"></div>
-  <div id="cursor-blur"></div>
-
   <canvas id="bg"></canvas>
 
   <nav>
-    <div class="logo">Moksh<span>Verse</span>.</div>
+    <div class="logo-text">Moksh<span>Verse</span>.</div>
     <div class="nav-links">
       <a href="#home">Home</a>
       <a href="#about">About</a>
@@ -288,34 +207,35 @@
   </nav>
 
   <header id="home">
-    <img src="mokshlogo.png" alt="Moksh Logo" class="hero-img">
-    <h1 class="gsap-hero">BEYOND LIMITS</h1>
-    <h2 class="gsap-hero">Innovation & Design</h2>
-    <p class="gsap-hero">Welcome to the digital universe of <strong>Moksh</strong>. A 10th-grade visionary exploring the boundaries of code and creativity.</p>
-    <a href="#about" class="btn-main gsap-hero">Explore My World</a>
+    <div class="logo-container" id="tiltLogo">
+       <img src="mokshlogo.png" alt="Moksh Logo" class="hero-img">
+    </div>
+
+    <h1 class="gsap-hero">MOKSHVERSE</h1>
+    <h2 class="gsap-hero">BEYOND LIMITS</h2>
+    
+    <a href="#about" class="btn-main gsap-hero">Enter The Void</a>
   </header>
 
-  <section id="about" class="about">
+  <section id="about">
     <div class="glass-card gsap-fade-up">
       <h2 class="section-title">About <span>Me</span></h2>
-      <p class="about-text">
-        Hey, I’m <span class="highlight">Moksh</span>. I don't just write code; I craft experiences. 
+      <p style="font-size: 1.2rem; color: #dcdcdc; line-height: 1.8; text-align: center;">
+        I’m <span style="color:var(--gold); font-weight:700;">Moksh</span>. A visionary in the making.
         <br><br>
-        Currently in 10th grade, I am obsessed with building things that look impossible. 
-        MOKSHVERSE is my playground where <span style="color:var(--primary)">Technology</span> meets <span style="color:var(--primary)">Art</span>. 
-        Every pixel you see here is designed with passion.
+        MOKSHVERSE is not just a portfolio; it's a statement. A fusion of high-end design, modern technology, and limitless imagination. Built by a 10th-grade developer with a dream to conquer the digital cosmos.
       </p>
     </div>
   </section>
 
-  <section id="feedback" class="feedback">
+  <section id="feedback">
     <div class="glass-card gsap-fade-up">
-      <h2 class="section-title">Let's <span>Talk</span></h2>
+      <h2 class="section-title">Contact <span>Base</span></h2>
       <form>
-        <input type="text" placeholder="What's your name?" required>
-        <input type="email" placeholder="Your email address" required>
-        <textarea rows="5" placeholder="Write your message here..." required></textarea>
-        <button type="submit">Send Message 🚀</button>
+        <input type="text" placeholder="IDENTITY (NAME)" required>
+        <input type="email" placeholder="FREQUENCY (EMAIL)" required>
+        <textarea rows="5" placeholder="TRANSMISSION (MESSAGE)..." required></textarea>
+        <button type="submit">Initialize Send</button>
       </form>
     </div>
   </section>
@@ -326,101 +246,83 @@
       <a href="#"><i class="ri-github-fill"></i></a>
       <a href="#"><i class="ri-twitter-x-line"></i></a>
     </div>
-    <p style="margin-top:20px">© 2025 MOKSHVERSE | Designed by Moksh</p>
+    <p style="margin-top:30px; font-size: 0.8rem; letter-spacing: 1px;">© 2025 MOKSHVERSE | DESIGNED BY MOKSH</p>
   </footer>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
   
   <script>
-    // 1. Custom Cursor Logic
-    const cursor = document.querySelector("#cursor");
-    const cursorBlur = document.querySelector("#cursor-blur");
+    // --- 3D LOGO TILT EFFECT ---
+    const tiltContainer = document.getElementById("tiltLogo");
 
-    document.addEventListener("mousemove", function(dets){
-      cursor.style.left = dets.x + "px";
-      cursor.style.top = dets.y + "px";
-      cursorBlur.style.left = dets.x - 150 + "px"; // Offset for center
-      cursorBlur.style.top = dets.y - 150 + "px";
+    tiltContainer.addEventListener("mousemove", (e) => {
+        const rect = tiltContainer.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        
+        const rotateX = (centerY - y) / 8; // Sensitivity
+        const rotateY = (x - centerX) / 8;
+
+        tiltContainer.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
     });
 
-    // 2. GSAP Animations
-    gsap.from(".gsap-hero", {
-      y: 50,
-      opacity: 0,
-      duration: 1,
-      stagger: 0.2,
-      ease: "power3.out"
+    tiltContainer.addEventListener("mouseleave", () => {
+        tiltContainer.style.transform = `rotateX(0deg) rotateY(0deg)`;
+    });
+
+    // --- ANIMATIONS ---
+    gsap.from(".gsap-hero", { 
+      y: 100, 
+      opacity: 0, 
+      duration: 1.5, 
+      stagger: 0.2, 
+      ease: "power4.out", 
+      delay: 0.2 
     });
 
     gsap.utils.toArray('.gsap-fade-up').forEach(element => {
-      gsap.from(element, {
-        scrollTrigger: {
-          trigger: element,
-          start: "top 80%",
-          toggleActions: "play none none reverse"
-        },
-        y: 50,
-        opacity: 0,
-        duration: 1,
-        ease: "power3.out"
+      gsap.from(element, { 
+        scrollTrigger: { trigger: element, start: "top 85%" }, 
+        y: 60, 
+        opacity: 0, 
+        duration: 1, 
+        ease: "power3.out" 
       });
     });
 
-    // 3. Particle Background (Optimized)
+    // --- PARTICLES BACKGROUND ---
     const canvas = document.getElementById("bg");
     const ctx = canvas.getContext("2d");
     
-    function resizeCanvas() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+    function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+    resize(); window.addEventListener("resize", resize);
+
+    let particles = [];
+    for(let i=0; i<60; i++) particles.push({
+      x:Math.random()*canvas.width, 
+      y:Math.random()*canvas.height, 
+      r:Math.random()*2, 
+      d:Math.random()*1.5 
+    });
+
+    function draw() {
+      ctx.clearRect(0,0,canvas.width,canvas.height); 
+      ctx.fillStyle="rgba(0, 255, 255, 0.3)"; 
+      ctx.beginPath();
+      for(let i=0; i<particles.length; i++) {
+        let p = particles[i]; 
+        ctx.moveTo(p.x, p.y); 
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI*2, true);
+        p.y -= p.d; 
+        if(p.y < 0) p.y = canvas.height;
+      }
+      ctx.fill(); 
+      requestAnimationFrame(draw);
     }
-    resizeCanvas();
-    window.addEventListener("resize", resizeCanvas);
-
-    let particlesArray;
-
-    class Particle {
-      constructor() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
-        this.size = Math.random() * 2;
-        this.speedX = (Math.random() * 1) - 0.5;
-        this.speedY = (Math.random() * 1) - 0.5;
-        this.color = 'rgba(0, 255, 255, 0.5)';
-      }
-      update() {
-        this.x += this.speedX;
-        this.y += this.speedY;
-        if (this.x > canvas.width || this.x < 0) this.speedX = -this.speedX;
-        if (this.y > canvas.height || this.y < 0) this.speedY = -this.speedY;
-      }
-      draw() {
-        ctx.fillStyle = this.color;
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fill();
-      }
-    }
-
-    function init() {
-      particlesArray = [];
-      for (let i = 0; i < 100; i++) {
-        particlesArray.push(new Particle());
-      }
-    }
-    init();
-
-    function animateParticles() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      for (let i = 0; i < particlesArray.length; i++) {
-        particlesArray[i].update();
-        particlesArray[i].draw();
-      }
-      requestAnimationFrame(animateParticles);
-    }
-    animateParticles();
-
+    draw();
   </script>
 </body>
 </html>
