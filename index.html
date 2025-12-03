@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MOKSHVERSE | Official</title>
+  <title>MOKSHVERSE | Premium Portfolio</title>
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,7 +20,8 @@
       --glass-border: rgba(255, 255, 255, 0.08);
     }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; } /* Cursor reset to normal */
+    /* 1. CURSOR REMOVED: Default cursor restored */
+    * { margin: 0; padding: 0; box-sizing: border-box; } 
     
     body {
       font-family: 'Outfit', sans-serif;
@@ -74,7 +75,7 @@
 
     /* Hero Section */
     header {
-      min-height: 100vh; /* Changed to min-height for better spacing */
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -85,7 +86,7 @@
     }
 
     .hero-img {
-      width: 200px; /* Slightly bigger logo */
+      width: 220px; /* Slightly bigger logo */
       margin-bottom: 30px;
       filter: drop-shadow(0 0 30px rgba(255, 215, 0, 0.3));
       animation: float 6s ease-in-out infinite;
@@ -96,33 +97,31 @@
       50% { transform: translateY(-20px); }
     }
 
-    /* ULTRA PREMIUM TITLE STYLE */
+    /* 2. PREMIUM TITLE STYLING (Syncopate Font) */
     header h1 {
-      font-family: 'Syncopate', sans-serif; /* High-end font */
-      font-size: clamp(3rem, 9vw, 7rem); /* Huge responsive size */
+      font-family: 'Syncopate', sans-serif; /* The Premium Font */
+      font-size: clamp(3rem, 9vw, 6.5rem); /* Huge Responsive Size */
       line-height: 1.1;
       font-weight: 700;
-      margin-bottom: 15px;
-      letter-spacing: 6px;
+      letter-spacing: 5px; /* Wide spacing */
       text-transform: uppercase;
       
-      /* Premium Gradient: Silver to Gold */
-      background: linear-gradient(135deg, #ffffff 0%, #e0e0e0 40%, var(--gold) 100%);
+      /* Premium Gradient: White to Gold */
+      background: linear-gradient(to bottom right, #ffffff, #e0e0e0, var(--gold));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       
-      /* Glow Effect */
-      filter: drop-shadow(0 0 25px rgba(255, 215, 0, 0.3));
+      margin-bottom: 10px;
+      filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.4)); /* Golden Glow */
     }
     
     header h2 {
-      font-size: clamp(1rem, 4vw, 2rem);
-      color: var(--primary);
+      font-size: clamp(1rem, 4vw, 2.5rem);
+      color: transparent;
+      -webkit-text-stroke: 1px var(--primary); /* Neon Stroke effect */
+      opacity: 0.8;
       text-transform: uppercase;
-      letter-spacing: 8px; /* Wide spacing for premium look */
-      font-weight: 300;
-      margin-bottom: 20px;
-      text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+      letter-spacing: 3px;
     }
 
     header p {
@@ -252,7 +251,7 @@
     /* Mobile Responsive */
     @media (max-width: 768px) {
       header h1 { font-size: 3rem; }
-      header h2 { font-size: 1.2rem; }
+      header h2 { font-size: 1.5rem; }
       .glass-card { padding: 30px 20px; }
       .nav-links { display: none; }
     }
@@ -273,10 +272,8 @@
 
   <header id="home">
     <img src="mokshlogo.png" alt="Moksh Logo" class="hero-img">
-    
-    <h1 class="gsap-hero">MOKSHVERSE</h1>
-    <h2 class="gsap-hero">BEYOND LIMITS</h2>
-    
+    <h1 class="gsap-hero">BEYOND LIMITS</h1>
+    <h2 class="gsap-hero">Innovation & Design</h2>
     <p class="gsap-hero">Welcome to the digital universe of <strong>Moksh</strong>. A 10th-grade visionary exploring the boundaries of code and creativity.</p>
     <a href="#about" class="btn-main gsap-hero">Explore My World</a>
   </header>
@@ -319,9 +316,9 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
   
   <script>
-    // REMOVED Custom Cursor Logic from JS
+    // 1. Custom Cursor Logic REMOVED
 
-    // 1. GSAP Animations
+    // 2. GSAP Animations
     gsap.from(".gsap-hero", {
       y: 50,
       opacity: 0,
@@ -344,7 +341,7 @@
       });
     });
 
-    // 2. Particle Background (Optimized)
+    // 3. Particle Background (Optimized)
     const canvas = document.getElementById("bg");
     const ctx = canvas.getContext("2d");
     
