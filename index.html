@@ -3,22 +3,25 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MOKSHVERSE | Ultra Premium</title>
+  <title>MOKSHVERSE | Official</title>
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700;900&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
+  
   <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
 
   <style>
     :root {
       --primary: #00ffff;
       --gold: #ffd700;
+      --silver: #e0e0e0;
       --bg-dark: #050505;
-      --card-bg: rgba(20, 20, 20, 0.5);
+      --card-bg: rgba(20, 20, 20, 0.6);
       --glass-border: rgba(255, 255, 255, 0.1);
     }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; } /* Hide default cursor */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     
     body {
       font-family: 'Outfit', sans-serif;
@@ -26,33 +29,6 @@
       color: #fff;
       overflow-x: hidden;
     }
-
-    /* --- TRENDING MAGNETIC CURSOR --- */
-    .cursor-dot, .cursor-ring {
-      position: fixed;
-      top: 0; left: 0;
-      transform: translate(-50%, -50%);
-      pointer-events: none;
-      z-index: 9999;
-    }
-    .cursor-dot {
-      width: 8px; height: 8px;
-      background: var(--primary);
-      border-radius: 50%;
-    }
-    .cursor-ring {
-      width: 40px; height: 40px;
-      border: 1px solid rgba(255, 255, 255, 0.5);
-      border-radius: 50%;
-      transition: width 0.3s, height 0.3s, border-color 0.3s;
-    }
-    /* Magnetic Effect State */
-    body.magnetic-active .cursor-ring {
-      width: 80px; height: 80px;
-      background: rgba(255, 255, 255, 0.05);
-      border-color: var(--primary);
-    }
-    body.magnetic-active .cursor-dot { display: none; }
 
     /* Background Animation */
     canvas#bg {
@@ -65,111 +41,168 @@
       position: fixed; top: 0; width: 100%;
       display: flex; justify-content: space-between; align-items: center;
       padding: 20px 5%; z-index: 100;
-      backdrop-filter: blur(10px);
+      backdrop-filter: blur(15px);
       border-bottom: 1px solid rgba(255,255,255,0.05);
     }
-    .logo-text { font-weight: 900; font-size: 1.5rem; letter-spacing: 2px; }
+    
+    .logo-text {
+      font-family: 'Syncopate', sans-serif; /* Ultra Premium Font */
+      font-weight: 700;
+      font-size: 1.5rem;
+      letter-spacing: 3px;
+      color: #fff;
+      text-transform: uppercase;
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+    }
     .logo-text span { color: var(--gold); }
+    
     .nav-links a {
       color: #ccc; text-decoration: none; margin-left: 30px;
-      font-weight: 500; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px;
+      font-weight: 500; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px;
+      transition: 0.3s;
     }
+    .nav-links a:hover { color: var(--primary); text-shadow: 0 0 15px var(--primary); }
 
-    /* --- ULTRA PREMIUM 3D LOGO --- */
+    /* --- HERO SECTION --- */
     header {
       min-height: 100vh; display: flex; flex-direction: column;
       justify-content: center; align-items: center; text-align: center;
-      perspective: 1000px; /* Needed for 3D effect */
-      padding-top: 80px;
+      perspective: 1000px; padding-top: 60px;
     }
 
+    /* 3D Logo Container */
     .logo-container {
-      width: 300px; /* Increased Size */
-      height: 300px;
-      margin-bottom: 40px;
-      position: relative;
-      transform-style: preserve-3d; /* Crucial for 3D */
-      transition: transform 0.1s ease-out; /* Smooth tilt */
+      width: 280px; height: 280px;
+      margin-bottom: 30px;
+      transform-style: preserve-3d;
+      transition: transform 0.1s ease-out;
     }
 
     .hero-img {
       width: 100%;
-      /* Intense Multi-Layer Glow for Premium feel */
-      filter: drop-shadow(0 0 20px var(--gold)) drop-shadow(0 0 60px var(--primary));
-      /* Slight depth */
-      transform: translateZ(50px); 
+      filter: drop-shadow(0 0 25px var(--gold)) drop-shadow(0 0 50px var(--primary));
+      transform: translateZ(40px);
     }
 
+    /* ULTRA PRO MAX TEXT STYLE */
     header h1 {
-      font-size: clamp(3rem, 9vw, 7rem);
-      line-height: 1; font-weight: 900;
-      background: linear-gradient(to right, #fff, var(--gold));
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      font-family: 'Syncopate', sans-serif; /* The Premium Font */
+      font-size: clamp(2.5rem, 8vw, 6.5rem); /* Responsive Huge Size */
+      font-weight: 700;
+      letter-spacing: 10px; /* Wide spacing looks expensive */
+      line-height: 1.1;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      
+      /* Gold & Silver Gradient */
+      background: linear-gradient(to bottom, #ffffff, var(--silver), var(--gold));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      
+      /* Neon Glow */
+      filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.5));
+      animation: textShine 5s infinite alternate;
     }
+
+    @keyframes textShine {
+      0% { filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.3)); }
+      100% { filter: drop-shadow(0 0 40px rgba(0, 255, 255, 0.6)); }
+    }
+
     header h2 {
-      font-size: clamp(1.5rem, 4vw, 3rem);
-      color: transparent; -webkit-text-stroke: 1px var(--primary); opacity: 0.8;
+      font-size: clamp(1rem, 3vw, 2rem);
+      letter-spacing: 5px;
+      color: var(--primary);
+      text-transform: uppercase;
+      font-weight: 300;
+      opacity: 0.9;
+      margin-bottom: 30px;
     }
+
+    /* Main Button */
     .btn-main {
-      margin-top: 50px; padding: 15px 50px;
-      background: transparent; border: 2px solid var(--gold);
-      color: var(--gold); font-weight: 700; border-radius: 50px;
-      text-transform: uppercase; letter-spacing: 2px; transition: 0.4s;
-      position: relative; overflow: hidden;
+      padding: 18px 50px;
+      background: rgba(255, 215, 0, 0.1);
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      font-weight: 700;
+      font-size: 0.9rem;
+      border-radius: 0; /* Sharp edges look more tech/premium */
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      transition: 0.4s;
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(5px);
     }
-    .btn-main:hover { background: var(--gold); color: #000; box-shadow: 0 0 50px var(--gold); }
+    .btn-main:hover {
+      background: var(--gold);
+      color: #000;
+      box-shadow: 0 0 40px var(--gold);
+    }
 
     /* Sections & Glass Cards */
     section { padding: 100px 5%; }
-    .section-title { font-size: 3rem; margin-bottom: 50px; text-transform: uppercase; font-weight: 800; text-align: center; }
+    .section-title {
+      font-family: 'Syncopate', sans-serif;
+      font-size: 2.5rem; margin-bottom: 50px;
+      text-transform: uppercase; font-weight: 700; text-align: center;
+      letter-spacing: 5px;
+    }
     .section-title span { color: var(--primary); }
 
     .glass-card {
       background: var(--card-bg);
-      backdrop-filter: blur(30px) saturate(150%);
+      backdrop-filter: blur(25px);
       border: 1px solid var(--glass-border);
-      border-radius: 25px; padding: 60px;
-      max-width: 950px; margin: 0 auto;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+      padding: 60px;
+      max-width: 900px; margin: 0 auto;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.6);
     }
     
-    /* Form Styles */
+    /* Inputs */
     input, textarea {
       width: 100%; margin-bottom: 20px; padding: 20px;
-      background: rgba(255,255,255,0.05); border: 1px solid #333;
-      border-radius: 12px; color: #fff; font-family: 'Outfit', sans-serif;
+      background: rgba(255,255,255,0.03); border: 1px solid #444;
+      color: #fff; font-family: 'Outfit', sans-serif; font-size: 1rem;
       transition: 0.3s;
     }
-    input:focus, textarea:focus { border-color: var(--primary); box-shadow: 0 0 25px rgba(0, 255, 255, 0.2); outline: none; }
-    button[type="submit"] {
-      width: 100%; padding: 20px; background: linear-gradient(90deg, var(--primary), #0088ff);
-      border: none; border-radius: 12px; color: #000; font-weight: 800;
-      text-transform: uppercase; transition: 0.3s;
+    input:focus, textarea:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 20px rgba(255, 215, 0, 0.1);
+      outline: none;
+      background: rgba(0,0,0,0.5);
     }
+    
+    button[type="submit"] {
+      width: 100%; padding: 20px;
+      background: linear-gradient(90deg, var(--primary), #0055ff);
+      border: none; color: #fff; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; transition: 0.3s; cursor: pointer;
+    }
+    button[type="submit"]:hover { letter-spacing: 4px; box-shadow: 0 0 30px var(--primary); }
 
     footer { padding: 50px; text-align: center; color: #666; border-top: 1px solid rgba(255,255,255,0.05); }
-    .socials a { color: #fff; font-size: 1.8rem; margin: 0 15px; transition: 0.3s; }
-    .socials a:hover { color: var(--gold); transform: scale(1.2); }
+    .socials a { color: #fff; font-size: 1.8rem; margin: 0 15px; transition: 0.3s; display: inline-block; }
+    .socials a:hover { color: var(--gold); transform: translateY(-5px); text-shadow: 0 0 20px var(--gold); }
 
     @media (max-width: 768px) {
       .nav-links { display: none; }
-      .logo-container { width: 200px; height: 200px; }
+      .logo-container { width: 220px; height: 220px; }
+      header h1 { letter-spacing: 5px; } /* Adjust spacing for mobile */
     }
   </style>
 </head>
 <body>
-
-  <div class="cursor-dot"></div>
-  <div class="cursor-ring"></div>
 
   <canvas id="bg"></canvas>
 
   <nav>
     <div class="logo-text">Moksh<span>Verse</span>.</div>
     <div class="nav-links">
-      <a href="#home" class="magnetic">Home</a>
-      <a href="#about" class="magnetic">About</a>
-      <a href="#feedback" class="magnetic">Feedback</a>
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#feedback">Feedback</a>
     </div>
   </nav>
 
@@ -178,125 +211,116 @@
        <img src="mokshlogo.png" alt="Moksh Logo" class="hero-img">
     </div>
 
-    <h1 class="gsap-hero">BEYOND LIMITS</h1>
-    <h2 class="gsap-hero">Innovation & Design</h2>
-    <a href="#about" class="btn-main magnetic gsap-hero">Explore Universe</a>
+    <h1 class="gsap-hero">MOKSHVERSE</h1>
+    <h2 class="gsap-hero">BEYOND LIMITS</h2>
+    
+    <a href="#about" class="btn-main gsap-hero">Enter The Void</a>
   </header>
 
   <section id="about">
     <div class="glass-card gsap-fade-up">
       <h2 class="section-title">About <span>Me</span></h2>
-      <p style="font-size: 1.3rem; color: #ccc; line-height: 1.8; text-align: center;">
-        I’m <span style="color:var(--gold); font-weight:700;">Moksh</span>. A 10th-grade creator obsessing over the fine line between code and magic. MOKSHVERSE is my digital canvas where I push boundaries and redefine what's possible on the web.
+      <p style="font-size: 1.2rem; color: #dcdcdc; line-height: 1.8; text-align: center;">
+        I’m <span style="color:var(--gold); font-weight:700;">Moksh</span>. A visionary in the making.
+        <br><br>
+        MOKSHVERSE is not just a portfolio; it's a statement. A fusion of high-end design, modern technology, and limitless imagination. Built by a 10th-grade developer with a dream to conquer the digital cosmos.
       </p>
     </div>
   </section>
 
   <section id="feedback">
     <div class="glass-card gsap-fade-up">
-      <h2 class="section-title">Get in <span>Touch</span></h2>
+      <h2 class="section-title">Contact <span>Base</span></h2>
       <form>
-        <input type="text" placeholder="Your Name" class="magnetic">
-        <input type="email" placeholder="Your Email" class="magnetic">
-        <textarea rows="5" placeholder="Your Message..." class="magnetic"></textarea>
-        <button type="submit" class="magnetic">Send Feedback 🚀</button>
+        <input type="text" placeholder="IDENTITY (NAME)" required>
+        <input type="email" placeholder="FREQUENCY (EMAIL)" required>
+        <textarea rows="5" placeholder="TRANSMISSION (MESSAGE)..." required></textarea>
+        <button type="submit">Initialize Send</button>
       </form>
     </div>
   </section>
 
   <footer>
     <div class="socials">
-      <a href="https://instagram.com/__moksh__kushwah__07" target="_blank" class="magnetic"><i class="ri-instagram-line"></i></a>
-      <a href="#" class="magnetic"><i class="ri-github-fill"></i></a>
+      <a href="https://instagram.com/__moksh__kushwah__07" target="_blank"><i class="ri-instagram-line"></i></a>
+      <a href="#"><i class="ri-github-fill"></i></a>
+      <a href="#"><i class="ri-twitter-x-line"></i></a>
     </div>
-    <p style="margin-top:30px">© 2025 MOKSHVERSE | Ultra Premium Edition</p>
+    <p style="margin-top:30px; font-size: 0.8rem; letter-spacing: 1px;">© 2025 MOKSHVERSE | DESIGNED BY MOKSH</p>
   </footer>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
   
   <script>
-    // --- 1. NEW TRENDING MAGNETIC CURSOR JS ---
-    const cursorDot = document.querySelector(".cursor-dot");
-    const cursorRing = document.querySelector(".cursor-ring");
-    const magneticElements = document.querySelectorAll(".magnetic");
-
-    // Use GSAP quickSetter for high performance mouse following
-    gsap.set(".cursor-dot, .cursor-ring", {xPercent: -50, yPercent: -50});
-    const setDotX = gsap.quickSetter(cursorDot, "x", "px");
-    const setDotY = gsap.quickSetter(cursorDot, "y", "px");
-    const setRingX = gsap.quickSetter(cursorRing, "x", "px");
-    const setRingY = gsap.quickSetter(cursorRing, "y", "px");
-
-    window.addEventListener("mousemove", (e) => {
-      setDotX(e.clientX);
-      setDotY(e.clientY);
-      // Add some delay/easing to the ring for a smooth feel
-      gsap.to(cursorRing, {duration: 0.15, x: e.clientX, y: e.clientY});
-    });
-
-    // Magnetic Effect on Hover
-    magneticElements.forEach(el => {
-      el.addEventListener("mouseenter", () => {
-        document.body.classList.add("magnetic-active");
-        // Optional: stick cursor to element center (advanced)
-        // const rect = el.getBoundingClientRect();
-        // const centerX = rect.left + rect.width / 2;
-        // const centerY = rect.top + rect.height / 2;
-        // gsap.to(cursorRing, {duration: 0.3, x: centerX, y: centerY, ease: "power2.out"});
-      });
-      el.addEventListener("mouseleave", () => {
-        document.body.classList.remove("magnetic-active");
-         // gsap.to(cursorRing, {duration: 0.3, clearProps: "all"}); // Release stickiness
-      });
-    });
-
-
-    // --- 2. ULTRA PREMIUM 3D LOGO TILT JS ---
+    // --- 3D LOGO TILT EFFECT ---
     const tiltContainer = document.getElementById("tiltLogo");
-    const heroImg = tiltContainer.querySelector(".hero-img");
 
     tiltContainer.addEventListener("mousemove", (e) => {
         const rect = tiltContainer.getBoundingClientRect();
-        const x = e.clientX - rect.left; // Mouse X inside container
-        const y = e.clientY - rect.top;  // Mouse Y inside container
-        
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
         const centerX = rect.width / 2;
         const centerY = rect.height / 2;
         
-        // Calculate rotation degrees based on mouse distance from center
-        // Adjust the divider (e.g., / 10) to control rotation sensitivity
-        const rotateX = (centerY - y) / 10; 
-        const rotateY = (x - centerX) / 10;
+        const rotateX = (centerY - y) / 8; // Sensitivity
+        const rotateY = (x - centerX) / 8;
 
         tiltContainer.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
     });
 
-    // Reset logo position when mouse leaves
     tiltContainer.addEventListener("mouseleave", () => {
         tiltContainer.style.transform = `rotateX(0deg) rotateY(0deg)`;
     });
 
-
-    // --- 3. GSAP Animations & Particles (Standard) ---
-    gsap.from(".gsap-hero", { y: 80, opacity: 0, duration: 1.2, stagger: 0.2, ease: "power4.out", delay: 0.5 });
-    gsap.utils.toArray('.gsap-fade-up').forEach(element => {
-      gsap.from(element, { scrollTrigger: { trigger: element, start: "top 85%" }, y: 60, opacity: 0, duration: 1, ease: "power3.out" });
+    // --- ANIMATIONS ---
+    gsap.from(".gsap-hero", { 
+      y: 100, 
+      opacity: 0, 
+      duration: 1.5, 
+      stagger: 0.2, 
+      ease: "power4.out", 
+      delay: 0.2 
     });
 
-    // Simplified Particles
+    gsap.utils.toArray('.gsap-fade-up').forEach(element => {
+      gsap.from(element, { 
+        scrollTrigger: { trigger: element, start: "top 85%" }, 
+        y: 60, 
+        opacity: 0, 
+        duration: 1, 
+        ease: "power3.out" 
+      });
+    });
+
+    // --- PARTICLES BACKGROUND ---
     const canvas = document.getElementById("bg");
     const ctx = canvas.getContext("2d");
-    canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+    
+    function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+    resize(); window.addEventListener("resize", resize);
+
     let particles = [];
-    for(let i=0; i<80; i++) particles.push({x:Math.random()*canvas.width, y:Math.random()*canvas.height, r:Math.random()*2, d:Math.random()*2});
+    for(let i=0; i<60; i++) particles.push({
+      x:Math.random()*canvas.width, 
+      y:Math.random()*canvas.height, 
+      r:Math.random()*2, 
+      d:Math.random()*1.5 
+    });
+
     function draw() {
-      ctx.clearRect(0,0,canvas.width,canvas.height); ctx.fillStyle="rgba(0,255,255,0.4)"; ctx.beginPath();
+      ctx.clearRect(0,0,canvas.width,canvas.height); 
+      ctx.fillStyle="rgba(0, 255, 255, 0.3)"; 
+      ctx.beginPath();
       for(let i=0; i<particles.length; i++) {
-        let p = particles[i]; ctx.moveTo(p.x, p.y); ctx.arc(p.x, p.y, p.r, 0, Math.PI*2, true);
-        p.y -= p.d; if(p.y < 0) p.y = canvas.height;
+        let p = particles[i]; 
+        ctx.moveTo(p.x, p.y); 
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI*2, true);
+        p.y -= p.d; 
+        if(p.y < 0) p.y = canvas.height;
       }
-      ctx.fill(); requestAnimationFrame(draw);
+      ctx.fill(); 
+      requestAnimationFrame(draw);
     }
     draw();
   </script>
